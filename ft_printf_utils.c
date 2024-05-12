@@ -23,3 +23,16 @@ void	my_memset(void *ptr, int value, size_t n)
 		--n;
 	}
 }
+
+bool	ft_in(const char *str, char c)
+{
+	if(str == 0)
+		return false;
+	while (*str)
+	{
+		if (*str == c)
+			return true;
+		++str;
+	}
+	return false;
+}

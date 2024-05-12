@@ -12,20 +12,20 @@
 
 #include "ft_printf.h"
 
-static int	initialize_data(t_data *data, const char *format);
+static int	ft_initialize_data(t_data *data, const char *format);
 
 int	ft_printf(const char *format, ...)
 {
 	t_data	data;
 	va_start(data.arg_ptr, format);
-	if (initialize_data(&data, format))
+	if (ft_initialize_data(&data, format))
 		return -1;
 	while (*data.str != '\0')
 	{
 		if (*data.str == '%' &&  *(++data.str))
 		{
-			if (parse_format(&data))
-				return PARSE_ERROR;
+			if (ft_parsef(&data))
+				return (PARSE_ERROR);
 			render_format(&data);
 		}
 		else
@@ -38,7 +38,7 @@ int	ft_printf(const char *format, ...)
 	return (data.nbr_chars);
 }
 
-static int	initialize_data(t_data *data, const char *format)
+static int	ft_initialize_data(t_data *data, const char *format)
 {
 	data -> nbr_chars = 0;
 	data -> str = format;
