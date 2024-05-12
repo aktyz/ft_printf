@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zslowian <zslowian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/03 21:38:59 by zslowian          #+#    #+#             */
-/*   Updated: 2024/04/03 21:38:59 by zslowian         ###   ########.fr       */
+/*   Created: 2024/05/12 14:44:53 by zslowian          #+#    #+#             */
+/*   Updated: 2024/05/12 14:44:53 by zslowian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "ft_printf.h"
 
-#include <stdio.h>
-#include "libft.h"
+void	my_memset(void *ptr, int value, size_t n)
+{
+	byte	*ptr_byte;
 
-int	ft_printf(const char *, ...);
-
-#endif
+	ptr_byte = (byte *)ptr;
+	while (n)
+	{
+		*ptr_byte++ = 0;
+		--n;
+	}
+}

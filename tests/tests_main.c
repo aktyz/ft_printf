@@ -10,19 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "test_ft_printf.h"
 
 int	main(void)
 {
 	int		o_result;
 	int		my_result;
-	char	var[30];
 
 	o_result = printf("My first test case\n");
 	my_result = ft_printf("My first test case\n");
 	if(o_result != my_result)
 	{
-		printf("First test case failed!!!\n\n")
+		printf("First test case failed!!!\n\n");
 	}
 	/*strcpy(var, "My second test case\n");
 	o_result = printf("%s", var);

@@ -10,9 +10,43 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-int	ft_printf(const char *, ...)
+static int	initialize_data(t_data *data, const char *format);
+
+int	ft_printf(const char *format, ...)
 {
-	return (0);
+	t_data	data;
+	va_start(data.arg_ptr, format);
+	if (initialize_data(&data, format))
+		return -1;
+	while (*data.str != '\0')
+	{
+		if (*data.str == '%' &&  *(++data.str))
+		{
+			if (parse_format(&data))
+				return PARSE_ERROR;
+			render_format(&data);
+		}
+		else
+			write_buffer(&data, *data.str);
+		++data.str;
+	}
+	flush_buffer(&data);
+	va_end(data.arg_ptr);
+	free(data.buffer);
+	return (data.nbr_chars);
+}
+
+static int	initialize_data(t_data *data, const char *format)
+{
+	data -> nbr_chars = 0;
+	data -> str = format;
+	data -> buffer = malloc(BUF_SIZE * sizeof(char));
+	if (NULL == data -> buffer)
+		return MALLOC_ERROR;
+	data -> buffer_index = 0;
+	//ft_memset(data -> buffer, 0, BUF_SIZE * sizeof(char));//TODO: replace with included Libft
+	my_memset(data -> buffer, 0, BUF_SIZE * sizeof(char));
+	return (OK);
 }
