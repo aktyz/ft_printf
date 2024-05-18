@@ -5,34 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zslowian <zslowian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/12 14:44:53 by zslowian          #+#    #+#             */
-/*   Updated: 2024/05/12 14:44:53 by zslowian         ###   ########.fr       */
+/*   Created: 2024/05/18 21:18:44 by zslowian          #+#    #+#             */
+/*   Updated: 2024/05/18 21:18:44 by zslowian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	my_memset(void *ptr, int value, size_t n)
-{
-	byte	*ptr_byte;
 
-	ptr_byte = (byte *)ptr;
+void	my_memset(void *ptr, t_byte value, size_t n)
+{
+	t_byte *ptr_byte;
+
+	ptr_byte = (t_byte *)ptr;
 	while (n)
 	{
-		*ptr_byte++ = 0;
+		*ptr_byte++ = value;
 		--n;
 	}
 }
 
 bool	ft_in(const char *str, char c)
 {
-	if(str == 0)
-		return false;
+	if (str == 0)
+		return (false);
 	while (*str)
 	{
 		if (*str == c)
-			return true;
+			return (true);
 		++str;
 	}
-	return false;
+	return (false);
 }

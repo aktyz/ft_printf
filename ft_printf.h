@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: zslowian <zslowian@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/03 21:38:59 by zslowian          #+#    #+#             */
-/*   Updated: 2024/04/03 21:38:59 by zslowian         ###   ########.fr       */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: zslowian <zslowian@student.42.fr>          +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
+/*   Created: 2024/05/18 21:19:07 by zslowian          #+#    #+#             */
+/*   Updated: 2024/05/18 21:19:07 by zslowian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-#define BUF_SIZE	(1 << 12)
-#define FLAGS		"+ 0-#"
-#define NUMBERS		"0123456789"
-#define SPECIFIERS	"cspdiuxX%"
+# define BUF_SIZE 4096
+# define FLAGS "+ 0-#"
+# define NUMBERS "0123456789"
+# define SPECIFIERS "cspdiuxX%"
 
-#include "libft.h"
-#include <stdlib.h> // malloc free
-#include <unistd.h> // write
-#include <stdarg.h> // variadic macros
-#include <limits.h> // INT_MAX, INT_MIN
+//#include "libft.h" TODO: work it out
+# include <limits.h> // INT_MAX, INT_MIN
+# include <stdarg.h> // variadic macros
+# include <stdbool.h>
+# include <stdlib.h> // malloc free
+# include <unistd.h> // write
+
+typedef enum
+{
+	BASE_2 = 2,
+	BASE_8 = 8,
+	BASE_10 = 10,
+	BASE_16 = 16,
+}	e_base;
 
 typedef struct s_format
 {
@@ -59,19 +71,15 @@ typedef enum
 	PARSE_ERROR = -87,
 }	e_error;
 
-typedef enum
-{
-	BASE_2 = 2,
-	BASE_8 = 8,
-	BASE_10 = 10,
-	BASE_16 = 16,
-}	e_base;
-
-typedef unsigned char	byte;
+typedef unsigned char	t_byte;
 
 bool	ft_in(const char *str, char c);
 int		ft_parsef(t_data *data);
 int		ft_printf(const char *, ...);
-void	my_memset(void *ptr, int value, size_t n);
+void	my_memset(void *ptr, t_byte value, size_t n);
+void	ft_write_buffer(t_data *data, char c);
+void	ft_flush_buffer(t_data *data);
+void	ft_putchar_buffer(char c, int precision, t_data *data);
+void	ft_render_char(t_data *data, int c);
 
 #endif
