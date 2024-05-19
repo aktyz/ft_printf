@@ -16,10 +16,14 @@ static void	ft_parse_flags(t_data *data);
 static void	ft_get_value(t_data *data, int *value);
 static int	my_atoi(t_data *data);
 
+/**
+ * Function that will read and store properly all the flags
+ * and given format specifier when there's a % sign in the 
+ * input string
+ *
+ */
 int	ft_parsef(t_data *data)
 {
-	// ft_memset(data -> format, 0,
-	//sizeof(t_format));//TODO: replace with included Libft
 	my_memset(&data->format, 0, sizeof(t_format));
 	data->format.precision = -1;
 	ft_parse_flags(data);
@@ -43,6 +47,12 @@ int	ft_parsef(t_data *data)
 	return (OK);
 }
 
+/**
+ * Function parsing potential flags for given format specifier
+ * 
+ * Flags are saved in t_data's format structure
+ *
+ */
 static void	ft_parse_flags(t_data *data)
 {
 	char	flag;
@@ -64,6 +74,11 @@ static void	ft_parse_flags(t_data *data)
 	}
 }
 
+/**
+ * Function that will read a value coming in the input string
+ * and store it under the value pointer
+ *
+ */
 static void	ft_get_value(t_data *data, int *value)
 {
 	if (*data->str == '*')
@@ -73,9 +88,12 @@ static void	ft_get_value(t_data *data, int *value)
 	}
 	else
 		*value = my_atoi(data);
-	//*value = ft_atoi(data); //TODO: replace with included Libft
 }
 
+/**
+ * 
+ *
+ */
 static int	my_atoi(t_data *data)
 {
 	int	value;

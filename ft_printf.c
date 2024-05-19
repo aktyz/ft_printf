@@ -2,9 +2,12 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: zslowian <zslowian@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: zslowian <zslowian@student.42.fr>          +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
 /*   Created: 2024/05/18 21:18:10 by zslowian          #+#    #+#             */
 /*   Updated: 2024/05/18 21:18:10 by zslowian         ###   ########.fr       */
 /*                                                                            */
@@ -15,12 +18,17 @@
 static int	ft_initialize_data(t_data *data, const char *format);
 void		ft_render_format(t_data *data);
 
-int	ft_printf(const char *format, ...)
+/**
+ * Function replicating the behaviour of stdio.h
+ * printf()
+ *
+ */
+int	ft_printf(const char *str, ...)
 {
 	t_data	data;
 
-	va_start(data.arg_ptr, format);
-	if (ft_initialize_data(&data, format))
+	va_start(data.arg_ptr, str);
+	if (ft_initialize_data(&data, str))
 		return (-1);
 	while (*data.str != '\0')
 	{
@@ -40,6 +48,12 @@ int	ft_printf(const char *format, ...)
 	return (data.nbr_chars);
 }
 
+/**
+ * Function that is initializing t_data structure to hold
+ * all the necessary information for printf to work
+ * properly
+ * 
+ */
 static int	ft_initialize_data(t_data *data, const char *format)
 {
 	data->nbr_chars = 0;
@@ -48,12 +62,14 @@ static int	ft_initialize_data(t_data *data, const char *format)
 	if (NULL == data->buffer)
 		return (MALLOC_ERROR);
 	data->buffer_index = 0;
-	/*ft_memset(data -> buffer, 0, BUF_SIZE*sizeof(char));
-	//TODO: replace with included Libft */
 	my_memset(data->buffer, 0, BUF_SIZE * sizeof(char));
 	return (OK);
 }
 
+/**
+ * Function switching between correct wrappers depending on
+ * the format specifier: "cspdiuxX%"
+ */
 void	ft_render_format(t_data *data)
 {
 	char	specifier;

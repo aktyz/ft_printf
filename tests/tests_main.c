@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test_ft_printf.h"
+#include "ft_printf.h"
 #include <string.h>
 #include <stdio.h>
 
@@ -65,7 +65,19 @@ void	test_string(void)
 	my_result = ft_printf("%s", var);
 	if (o_result != my_result)
 	{
-		printf("First string test case failed!!!\n\n");
+		printf("First string test case failed!!! Numbers printed:\n");
+		printf("Official function printed %d chars\n", o_result);
+		printf("My function printed %d chars\n\n", my_result);
+	}
+	*var = '\0';
+	o_result = printf("%s", var);
+	my_result = ft_printf("%s", var);
+	if (o_result != my_result)
+	{
+		printf("Second string test case failed -> print out null!!!");
+		printf(" Numbers printed:\n");
+		printf("Official function printed %d chars\n", o_result);
+		printf("My function printed %d chars\n\n", my_result);
 	}
 	ft_printf("String testing completed\n\n");
 }

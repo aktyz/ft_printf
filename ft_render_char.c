@@ -6,12 +6,17 @@
 /*   By: zslowian <zslowian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 20:30:08 by zslowian          #+#    #+#             */
-/*   Updated: 2024/05/19 14:26:00 by zslowian         ###   ########.fr       */
+/*   Updated: 2024/05/19 16:48:05 by zslowian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+/**
+ * Wrapper around ft_putchar_buffer function
+ * to handle the left adjustment
+ *
+ */
 void	ft_render_char(t_data *data, int c)
 {
 	int	width;
