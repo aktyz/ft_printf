@@ -55,7 +55,6 @@ static int	ft_initialize_data(t_data *data, const char *format)
 }
 
 void	ft_render_format(t_data *data)
-// TODO: replace with your libft functions
 {
 	char	specifier;
 
@@ -64,7 +63,6 @@ void	ft_render_format(t_data *data)
 		ft_render_char(data, '%');
 	else if ('c' == specifier)
 		ft_render_char(data, va_arg(data->arg_ptr, int));
-	// because of 'type promotion'
-	// else if ('s' == specifier)
-	//	print_str(data, va_arg(data->arg_ptr, char *));
+	else if ('s' == specifier)
+		ft_render_string(data, va_arg(data->arg_ptr, char *));
 }
