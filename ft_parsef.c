@@ -12,7 +12,6 @@
 
 #include "ft_printf.h"
 
-
 static void	ft_parse_flags(t_data *data);
 static void	ft_get_value(t_data *data, int *value);
 static int	my_atoi(t_data *data);
@@ -20,7 +19,7 @@ static int	my_atoi(t_data *data);
 int	ft_parsef(t_data *data)
 {
 	// ft_memset(data -> format, 0,
-		sizeof(t_format));//TODO: replace with included Libft
+	//sizeof(t_format));//TODO: replace with included Libft
 	my_memset(&data->format, 0, sizeof(t_format));
 	data->format.precision = -1;
 	ft_parse_flags(data);
@@ -46,7 +45,7 @@ int	ft_parsef(t_data *data)
 
 static void	ft_parse_flags(t_data *data)
 {
-	char flag;
+	char	flag;
 
 	while (ft_in(FLAGS, *data->str))
 	{
@@ -79,7 +78,7 @@ static void	ft_get_value(t_data *data, int *value)
 
 static int	my_atoi(t_data *data)
 {
-	int value;
+	int	value;
 
 	value = 0;
 	while (ft_in(NUMBERS, *data->str))

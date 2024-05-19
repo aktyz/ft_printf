@@ -19,7 +19,7 @@ int	main(void)
 
 	o_result = printf("My first test case\n");
 	my_result = ft_printf("My first test case\n");
-	if(o_result != my_result)
+	if (o_result != my_result)
 	{
 		printf("First test case failed!!!\n\n");
 	}

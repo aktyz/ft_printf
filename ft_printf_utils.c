@@ -12,10 +12,9 @@
 
 #include "ft_printf.h"
 
-
 void	my_memset(void *ptr, t_byte value, size_t n)
 {
-	t_byte *ptr_byte;
+	t_byte	*ptr_byte;
 
 	ptr_byte = (t_byte *)ptr;
 	while (n)
