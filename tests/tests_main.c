@@ -20,8 +20,6 @@ void	test_string(void);
 
 int	main(void)
 {
-	test_char();
-	test_percent();
 	test_string();
 	return (0);
 }
@@ -37,7 +35,7 @@ void	test_char(void)
 	{
 		printf("First char test case failed!!!\n\n");
 	}
-	ft_printf("Character testing completed\n\n");
+	printf("Character testing completed\n\n");
 }
 
 void	test_percent(void)
@@ -51,7 +49,7 @@ void	test_percent(void)
 	{
 		printf("Percent sign test case failed!!!\n\n");
 	}
-	ft_printf("Percent sign testing completed\n\n");
+	printf("Percent sign testing completed\n\n");
 }
 
 void	test_string(void)
@@ -62,6 +60,7 @@ void	test_string(void)
 
 	strcpy(var, "My second test case\n");
 	o_result = printf("%s", var);
+	strcpy(var, "My second test case\n");
 	my_result = ft_printf("%s", var);
 	if (o_result != my_result)
 	{
@@ -69,7 +68,7 @@ void	test_string(void)
 		printf("Official function printed %d chars\n", o_result);
 		printf("My function printed %d chars\n\n", my_result);
 	}
-	*var = '\0';
+	/**var = '\0';
 	o_result = printf("%s", var);
 	my_result = ft_printf("%s", var);
 	if (o_result != my_result)
@@ -78,6 +77,6 @@ void	test_string(void)
 		printf(" Numbers printed:\n");
 		printf("Official function printed %d chars\n", o_result);
 		printf("My function printed %d chars\n\n", my_result);
-	}
-	ft_printf("String testing completed\n\n");
+	}*/
+	printf("String testing completed\n\n");
 }

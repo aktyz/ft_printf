@@ -27,6 +27,7 @@ int	ft_printf(const char *str, ...)
 {
 	t_data	data;
 
+	printf("(ft_printf) String read as first argument: %s\n", str);
 	va_start(data.arg_ptr, str);
 	if (ft_initialize_data(&data, str))
 		return (-1);
@@ -54,10 +55,11 @@ int	ft_printf(const char *str, ...)
  * properly
  * 
  */
-static int	ft_initialize_data(t_data *data, const char *format)
+static int	ft_initialize_data(t_data *data, const char *format_string)
 {
 	data->nbr_chars = 0;
-	data->str = format;
+	data->str = format_string;
+	printf("(ft_initialize_data) String saved under string: %s\n", data->str);
 	data->buffer = malloc(BUF_SIZE * sizeof(char));
 	if (NULL == data->buffer)
 		return (MALLOC_ERROR);

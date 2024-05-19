@@ -28,6 +28,7 @@
 # include <stdbool.h>
 # include <stdlib.h> // malloc free
 # include <unistd.h> // write
+# include <stdio.h>
 
 typedef enum e_base
 {
