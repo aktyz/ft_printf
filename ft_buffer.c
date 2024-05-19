@@ -6,7 +6,7 @@
 /*   By: zslowian <zslowian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 20:06:20 by zslowian          #+#    #+#             */
-/*   Updated: 2024/05/19 15:36:49 by zslowian         ###   ########.fr       */
+/*   Updated: 2024/05/19 20:00:50 by zslowian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	ft_write_buffer(t_data *data, char c)
  **/
 void	ft_flush_buffer(t_data *data)
 {
+	//print_my_structure("ft_flush_buffer", data);
 	data->nbr_chars += write(STDOUT_FILENO, data->buffer, data->buffer_index);
 	my_memset(data->buffer, 0, BUF_SIZE);
 	data->buffer_index = 0;
@@ -50,10 +51,11 @@ void	ft_flush_buffer(t_data *data)
  **/
 void	ft_putchar_buffer(char c, int precision, t_data *data)
 {
-	if (precision <= 0)
+	if (precision && precision <= 0)
 		return ;
-	while (precision--)
-		ft_write_buffer(data, c);
+	else
+		while (precision--)
+			ft_write_buffer(data, c);
 }
 
 /**
@@ -63,8 +65,9 @@ void	ft_putchar_buffer(char c, int precision, t_data *data)
  **/
 void	ft_putstring_buffer(char *str, int precision, t_data *data)
 {
-	if (precision <= 0)
+	if (precision && precision <= 0)
 		return ;
-	while (precision-- && *str)
-		ft_write_buffer(data, *str++);
+	else
+		while (precision-- && *str)
+			ft_write_buffer(data, *str++);
 }

@@ -25,7 +25,7 @@ static int	my_atoi(t_data *data);
 int	ft_parsef(t_data *data)
 {
 	my_memset(&data->format, 0, sizeof(t_format));
-	data->format.precision = -1;
+	data->format.precision = 0;
 	ft_parse_flags(data);
 	ft_get_value(data, &data->format.width);
 	if (*data->str == '.' && *(++data->str))
@@ -44,6 +44,7 @@ int	ft_parsef(t_data *data)
 				data->format.upper_case = true;
 		}
 	}
+	//print_my_structure("ft_parsef", data);
 	return (OK);
 }
 

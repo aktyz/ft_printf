@@ -6,7 +6,7 @@
 /*   By: zslowian <zslowian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 14:53:41 by zslowian          #+#    #+#             */
-/*   Updated: 2024/05/19 16:58:48 by zslowian         ###   ########.fr       */
+/*   Updated: 2024/05/19 19:58:25 by zslowian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ void	ft_render_string(t_data *data, char *str)
 	{
 		str = "(null)";
 	}
+	//printf("(ft_render_string) My string to be printed instead of %%s: %s", str);
 	ft_set_nbr_padding_spaces(data, str);
+	//printf("(ft_render_string) My string to be printed instead of %%s: %s", str);
+	//print_my_structure("ft_render_string", data);
 	if (data->format.minus)
 	{
 		if (data->format.precision)
@@ -41,10 +44,14 @@ void	ft_render_string(t_data *data, char *str)
 	{
 		ft_putstring_buffer(PADDING_SPACE, data->format.nbr_padding_spaces,
 			data);
+		//printf("I should be here because there is no minus flag set\n\n");
 		if (data->format.precision)
 			ft_putstring_buffer(str, data->format.precision, data);
 		else
+		{
+			//printf("(ft_render_string) I should be here with %s", str);
 			ft_putstring_buffer(str, ft_strlen(str), data);
+		}
 	}
 }
 

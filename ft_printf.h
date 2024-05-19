@@ -56,14 +56,23 @@ typedef struct s_format
 	int		nbr_padding_spaces;
 
 }	t_format;
-
+/**
+ * Major ft_printf library structure holding all the necessary data
+ * to output the string correctly to the STD_OUT
+ */
 typedef struct s_data
 {
+	// Format string - first argument to the printf function
 	const char	*str;
+	// ft_printf library structure holding all the formatting flags
 	t_format	format;
+	// My variable list of arguments
 	va_list		arg_ptr;
+	// Number of chars output in the end (returned from ft_printf)
 	int			nbr_chars;
+	// Pointer to my 4K memory buffer
 	char		*buffer;
+	// Index of the next empty int slot in tbe memory buffer
 	int			buffer_index;
 }	t_data;
 
@@ -87,5 +96,8 @@ void	ft_putchar_buffer(char c, int precision, t_data *data);
 void	ft_putstring_buffer(char *str, int precision, t_data *data);
 void	ft_render_char(t_data *data, int c);
 void	ft_render_string(t_data *data, char *str);
+
+void	print_my_structure(char *ft_name, t_data *data);
+void	print_width_precision(char *ft_name, t_data *data);
 
 #endif
