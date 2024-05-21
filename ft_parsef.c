@@ -25,11 +25,10 @@ static int	my_atoi(t_data *data);
 int	ft_parsef(t_data *data)
 {
 	my_memset(&data->format, 0, sizeof(t_format));
-	data->format.precision = 0;
 	ft_parse_flags(data);
-	ft_get_value(data, &data->format.width);
+	ft_get_width_value(data, &data->format.width);
 	if (*data->str == '.' && *(++data->str))
-		ft_get_value(data, &data->format.precision);
+		ft_get_precision_value(data, &data->format.precision);
 	if (!ft_in(SPECIFIERS, *data->str))
 		return (PARSE_ERROR);
 	else
@@ -76,16 +75,43 @@ static void	ft_parse_flags(t_data *data)
 
 /**
  * Function that will read a value coming in the input string
- * and store it under the value pointer
+ * and store it under the data->format.precision
+ * taking into account flag combinations
  *
  */
-static void	ft_get_value(t_data *data, int *value)
+static void	ft_get_precision_value(t_data *data, int *value)
 {
 	if (*data->str == '*')
 	{
 		*value = va_arg(data->arg_ptr, int);
 		++data->str;
 	}
+	else if (!ft_in(NUMBERS, *data->str))
+		*value = 0;
+	else
+		*value = my_atoi(data);
+	if (ft_in("diuxX", data->format.specifier))
+	{
+		data->format.zero_pad = 0;
+	}
+}
+
+/**
+ * Function that will read a value coming in the input string
+ * and store it under the data->format.width
+ * taking into account flag combinations
+ *
+ */
+static void	ft_get_width_value(t_data *data, int *value)
+{
+	if (*data->str == '*')
+	{
+		*value = va_arg(data->arg_ptr, int);
+		++data->str;
+	}
+	// TODO: check the behaviour of the original function in this case
+	else if (!ft_in(NUMBERS, *data->str))
+		*value = 0;
 	else
 		*value = my_atoi(data);
 }

@@ -2,11 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
+/*                                                    +:+ +:+
 	+:+     */
-/*   By: zslowian <zslowian@student.42.fr>          +#+  +:+      
+/*   By: zslowian <zslowian@student.42.fr>          +#+  +:+
 	+#+        */
-/*                                                +#+#+#+#+#+  
+/*                                                +#+#+#+#+#+
 	+#+           */
 /*   Created: 2024/05/18 21:19:07 by zslowian          #+#    #+#             */
 /*   Updated: 2024/05/18 21:19:07 by zslowian         ###   ########.fr       */
@@ -30,6 +30,11 @@
 # include <unistd.h> // write
 # include <stdio.h>
 
+/**
+ * Enum structure to choose the base conversion of a number
+ * to print
+ *
+ */
 typedef enum e_base
 {
 	BASE_2 = 2,
@@ -38,15 +43,47 @@ typedef enum e_base
 	BASE_16 = 16,
 }	t_base;
 
+/**
+ * Union structure to hold the value of a number to print
+ * regardless of conversion
+ *
+ */
+typedef union u_value
+{
+	long			l_value;
+	unsigned long	ul_value;
+}	t_value;
+
+/**
+ * Structure to hold all the possible formatting flags
+ * passed to the ft_printf function in the format string
+ *
+ */
 typedef struct s_format
 {
-	// flags
+	/**
+	 * left-adjusted
+	 */
 	bool	minus;
+	/**
+	 * number sign (+ or -) before the number for signed conversion
+	 */
 	bool	plus;
+	/**
+	 * blank should be left before a positive number (or empty string)
+	 * produced by a signed conversion
+	 */
 	bool	space;
+	/**
+	 * The value should be converted to an "alternative form"
+	*/
 	bool	hash;
+	/**
+	 * The value should be zero padded
+	*/
 	bool	zero_pad;
 	// cspdiuxX% format specifiers
+	// left to implement: pdiuxX
 	char	specifier;
 	t_base	base;
 	bool	upper_case;
@@ -54,11 +91,13 @@ typedef struct s_format
 	int		width;
 	int		precision;
 	int		nbr_padding_spaces;
-
+	bool	is_value_negative;
 }	t_format;
+
 /**
- * Major ft_printf library structure holding all the necessary data
- * to output the string correctly to the STD_OUT
+ * Structure holding all the necessary data used in this library
+ * to print the string correctly
+ *
  */
 typedef struct s_data
 {
@@ -76,6 +115,11 @@ typedef struct s_data
 	int			buffer_index;
 }	t_data;
 
+/**
+ * Enum structure to hold possible errors that can be thrown at
+ * different level of the ft_printf function
+ *
+*/
 typedef enum e_error
 {
 	OK = 0,
@@ -83,6 +127,10 @@ typedef enum e_error
 	PARSE_ERROR = -87,
 }	t_error;
 
+/**
+ * Shorthand for the unsigned char type
+ *
+ */
 typedef unsigned char	t_byte;
 
 bool	ft_in(const char *str, char c);

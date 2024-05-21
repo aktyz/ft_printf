@@ -73,14 +73,29 @@ static int	ft_initialize_data(t_data *data, const char *format_string)
 void	ft_render_format(t_data *data)
 {
 	char	specifier;
+	t_value	int_value;
 
 	specifier = data->format.specifier;
+	int_value.l_value = 0;
 	if (specifier '%')
 		ft_render_char(data, '%');
 	else if (specifier == 'c')
 		ft_render_char(data, va_arg(data->arg_ptr, int));
 	else if (specifier == 's')
 		ft_render_string(data, va_arg(data->arg_ptr, char *));
-	if(ft_in("pdiuxX", specifier))
-	{}
+	if (ft_in("pdiuxX", specifier))
+	{
+		if (ft_in("di", specifier))
+		{
+			int_value.l_value = (long) va_arg(data->arg_ptr, int);
+			data->format.signed_value = true;
+			if (int_value.l_value < 0)
+				data->format.is_value_negative = true;
+		}
+		else if (specifier == 'p')
+			int_value.ul_value = (unsigned long) va_arg(data->arg_ptr, void *);
+		else if (ft_in("uxX", specifier))
+			int_values.ul_value = (unsigned long) va_arg(data->arg_ptr, unsigned int);
+		ft_render_number(data, int_value);
+	}
 }
