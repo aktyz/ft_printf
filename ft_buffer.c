@@ -6,7 +6,7 @@
 /*   By: zslowian <zslowian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 20:06:20 by zslowian          #+#    #+#             */
-/*   Updated: 2024/05/21 14:25:33 by zslowian         ###   ########.fr       */
+/*   Updated: 2024/05/21 19:17:43 by zslowian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	ft_write_buffer(t_data *data, char c);
 void	ft_flush_buffer(t_data *data);
 void	ft_putchar_buffer(char c, int precision, t_data *data);
 void	ft_putstring_buffer(char *str, int precision, t_data *data);
+void	ft_itoa_buffer(t_data *data, t_value int_value);
 
 /**
  * Function to write a Character c in the
@@ -69,4 +70,36 @@ void	ft_putstring_buffer(char *str, int precision, t_data *data)
 	else
 		while (precision-- && *str)
 			ft_write_buffer(data, *str++);
+}
+
+/**
+ * Function to put into the buffer a String of numbers
+ *
+ */
+void	ft_itoa_buffer(t_data *data, t_value int_value)
+{
+	t_value	local_temp;
+
+	if (data->format.base < 2 || data->format.base > 16)
+		return;
+	if (data->format.is_number_negative && !data->format.is_number_negated)
+	{
+		int_value.l_value = -(int_value.l_value);
+		data->format.is_number_negated = true;
+		ft_itoa_buffer(data, int_value);
+	}
+	else if (int_value.ul_value < data->format.base)
+	{
+		if (data->format.upper_case)
+			data->temp[data->format.nbr_length++] = UP_SYMBOLS[int_value.ul_value];
+		else
+			data->temp[data->format.nbr_length++] = LOW_SYMBOLS[int_value.ul_value];
+	}
+	else
+	{
+		local_temp.ul_value = int_value.ul_value / data->format.base;
+		ft_itoa_buffer(data, local_temp);
+		local_temp.ul_value = int_value.ul_value % data->format.base;
+		ft_itoa_buffer(data, local_temp);
+	}
 }

@@ -21,14 +21,16 @@
 # define NUMBERS "0123456789"
 # define SPECIFIERS "cspdiuxX%"
 # define PADDING_SPACE " "
+# define LOW_SYMBOLS "0123456789abcdef"
+# define UP_SYMBOLS "0123456789ABCDEF"
 
 //#include "libft.h" TODO: work it out
 # include <limits.h> // INT_MAX, INT_MIN
 # include <stdarg.h> // variadic macros
-# include <stdbool.h>
+# include <stdbool.h> // bool
 # include <stdlib.h> // malloc free
 # include <unistd.h> // write
-# include <stdio.h>
+# include <stdio.h> // TODO: replace with ft_printf once all test pass correctly
 
 /**
  * Enum structure to choose the base conversion of a number
@@ -91,7 +93,10 @@ typedef struct s_format
 	int		width;
 	int		precision;
 	int		nbr_padding_spaces;
-	bool	is_value_negative;
+	bool	is_number_negative;
+	bool	is_number_negated;
+	// lenght of the number string to be printed out
+	int		nbr_length;
 }	t_format;
 
 /**
@@ -113,6 +118,8 @@ typedef struct s_data
 	char		*buffer;
 	// Index of the next empty int slot in tbe memory buffer
 	int			buffer_index;
+	// Temporary buffer for handling number printing
+	char		temp[64];
 }	t_data;
 
 /**
@@ -144,6 +151,7 @@ void	ft_putchar_buffer(char c, int precision, t_data *data);
 void	ft_putstring_buffer(char *str, int precision, t_data *data);
 void	ft_render_char(t_data *data, int c);
 void	ft_render_string(t_data *data, char *str);
+void	ft_itoa_buffer(t_data *data, t_value int_value);
 
 void	print_my_structure(char *ft_name, t_data *data);
 void	print_width_precision(char *ft_name, t_data *data);

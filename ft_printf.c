@@ -90,7 +90,7 @@ void	ft_render_format(t_data *data)
 			int_value.l_value = (long) va_arg(data->arg_ptr, int);
 			data->format.signed_value = true;
 			if (int_value.l_value < 0)
-				data->format.is_value_negative = true;
+				data->format.is_number_negative = true;
 		}
 		else if (specifier == 'p')
 			int_value.ul_value = (unsigned long) va_arg(data->arg_ptr, void *);

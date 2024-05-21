@@ -15,6 +15,8 @@
 void	my_memset(void *ptr, t_byte value, size_t n);
 bool	ft_in(const char *str, char c);
 int		ft_strlen(const char *str);
+void	print_my_structure(char *ft_name, t_data *data);
+void	print_width_precision(char *ft_name, t_data *data);
 
 /**
  * Set the memory under pointer ptr of size n
@@ -64,7 +66,7 @@ int	ft_strlen(const char *str)
 /**
  * Debugging helper function to print everything stored
  * in my custom structure
- * 
+ *
  */
 void	print_my_structure(char *ft_name, t_data *data)
 {
@@ -89,7 +91,7 @@ void	print_my_structure(char *ft_name, t_data *data)
 /**
  * Debugging helper function to print three variables concerning
  * padding
- * 
+ *
  */
 void	print_width_precision(char *ft_name, t_data *data)
 {
