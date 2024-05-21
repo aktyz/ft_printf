@@ -2,12 +2,9 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+
-	+:+     */
-/*   By: zslowian <zslowian@student.42.fr>          +#+  +:+
-	+#+        */
-/*                                                +#+#+#+#+#+
-	+#+           */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zslowian <zslowian@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 21:19:07 by zslowian          #+#    #+#             */
 /*   Updated: 2024/05/18 21:19:07 by zslowian         ###   ########.fr       */
 /*                                                                            */
@@ -85,7 +82,6 @@ typedef struct s_format
 	*/
 	bool	zero_pad;
 	// cspdiuxX% format specifiers
-	// left to implement: pdiuxX
 	char	specifier;
 	t_base	base;
 	bool	upper_case;
@@ -93,6 +89,7 @@ typedef struct s_format
 	int		width;
 	int		precision;
 	int		nbr_padding_spaces;
+	int		nbr_padding_zeros;
 	bool	is_number_negative;
 	bool	is_number_negated;
 	// lenght of the number string to be printed out
@@ -151,6 +148,7 @@ void	ft_putchar_buffer(char c, int precision, t_data *data);
 void	ft_putstring_buffer(char *str, int precision, t_data *data);
 void	ft_render_char(t_data *data, int c);
 void	ft_render_string(t_data *data, char *str);
+void	ft_render_number(t_data *data, t_value int_value);
 void	ft_itoa_buffer(t_data *data, t_value int_value);
 
 void	print_my_structure(char *ft_name, t_data *data);

@@ -13,8 +13,10 @@
 #include "ft_printf.h"
 
 static void	ft_parse_flags(t_data *data);
-static void	ft_get_value(t_data *data, int *value);
+static void	ft_get_precision_value(t_data *data, int *value);
+static void	ft_get_width_value(t_data *data, int *value);
 static int	my_atoi(t_data *data);
+int			ft_parsef(t_data *data);
 
 /**
  * Function that will read and store properly all the flags

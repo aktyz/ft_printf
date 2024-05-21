@@ -77,7 +77,7 @@ void	ft_render_format(t_data *data)
 
 	specifier = data->format.specifier;
 	int_value.l_value = 0;
-	if (specifier '%')
+	if (specifier == '%')
 		ft_render_char(data, '%');
 	else if (specifier == 'c')
 		ft_render_char(data, va_arg(data->arg_ptr, int));
@@ -88,14 +88,13 @@ void	ft_render_format(t_data *data)
 		if (ft_in("di", specifier))
 		{
 			int_value.l_value = (long) va_arg(data->arg_ptr, int);
-			data->format.signed_value = true;
 			if (int_value.l_value < 0)
 				data->format.is_number_negative = true;
 		}
 		else if (specifier == 'p')
 			int_value.ul_value = (unsigned long) va_arg(data->arg_ptr, void *);
 		else if (ft_in("uxX", specifier))
-			int_values.ul_value = (unsigned long) va_arg(data->arg_ptr, unsigned int);
+			int_value.ul_value = (unsigned long) va_arg(data->arg_ptr, unsigned int);
 		ft_render_number(data, int_value);
 	}
 }
