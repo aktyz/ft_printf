@@ -18,7 +18,7 @@ static int	my_atoi(t_data *data);
 
 /**
  * Function that will read and store properly all the flags
- * and given format specifier when there's a % sign in the 
+ * and given format specifier when there's a % sign in the
  * input string
  *
  */
@@ -44,13 +44,12 @@ int	ft_parsef(t_data *data)
 				data->format.upper_case = true;
 		}
 	}
-	//print_my_structure("ft_parsef", data);
 	return (OK);
 }
 
 /**
  * Function parsing potential flags for given format specifier
- * 
+ *
  * Flags are saved in t_data's format structure
  *
  */
@@ -92,7 +91,7 @@ static void	ft_get_value(t_data *data, int *value)
 }
 
 /**
- * 
+ *
  *
  */
 static int	my_atoi(t_data *data)

@@ -2,11 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
+/*                                                    +:+ +:+
 	+:+     */
-/*   By: zslowian <zslowian@student.42.fr>          +#+  +:+      
+/*   By: zslowian <zslowian@student.42.fr>          +#+  +:+
 	+#+        */
-/*                                                +#+#+#+#+#+  
+/*                                                +#+#+#+#+#+
 	+#+           */
 /*   Created: 2024/05/18 21:18:10 by zslowian          #+#    #+#             */
 /*   Updated: 2024/05/18 21:18:10 by zslowian         ###   ########.fr       */
@@ -27,10 +27,9 @@ int	ft_printf(const char *str, ...)
 {
 	t_data	data;
 
-	//printf("(ft_printf) String read as first argument: %s\n", str);
 	va_start(data.arg_ptr, str);
 	if (ft_initialize_data(&data, str))
-		return (-1);
+		return (MALLOC_ERROR);
 	while (*data.str != '\0')
 	{
 		if (*data.str == '%' && *(++data.str))
@@ -53,19 +52,17 @@ int	ft_printf(const char *str, ...)
  * Function that is initializing t_data structure to hold
  * all the necessary information for printf to work
  * properly
- * 
+ *
  */
 static int	ft_initialize_data(t_data *data, const char *format_string)
 {
 	data->nbr_chars = 0;
 	data->str = format_string;
-	//printf("(ft_initialize_data) String saved under string: %s\n", data->str);
 	data->buffer = malloc(BUF_SIZE * sizeof(char));
 	if (NULL == data->buffer)
 		return (MALLOC_ERROR);
 	data->buffer_index = 0;
 	my_memset(data->buffer, 0, BUF_SIZE * sizeof(char));
-	//print_my_structure("ft_initialize_data", data);
 	return (OK);
 }
 
@@ -78,10 +75,12 @@ void	ft_render_format(t_data *data)
 	char	specifier;
 
 	specifier = data->format.specifier;
-	if ('%' == specifier)
+	if (specifier '%')
 		ft_render_char(data, '%');
-	else if ('c' == specifier)
+	else if (specifier == 'c')
 		ft_render_char(data, va_arg(data->arg_ptr, int));
-	else if ('s' == specifier)
+	else if (specifier == 's')
 		ft_render_string(data, va_arg(data->arg_ptr, char *));
+	if(ft_in("pdiuxX", specifier))
+	{}
 }

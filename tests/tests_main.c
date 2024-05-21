@@ -20,6 +20,8 @@ void	test_string(void);
 
 int	main(void)
 {
+	test_char();
+	test_percent();
 	test_string();
 	return (0);
 }
@@ -68,7 +70,7 @@ void	test_string(void)
 		printf("Official function printed %d chars\n", o_result);
 		printf("My function printed %d chars\n\n", my_result);
 	}
-	/**var = '\0';
+	my_memset(var, 0, sizeof(var));
 	o_result = printf("%s", var);
 	my_result = ft_printf("%s", var);
 	if (o_result != my_result)
@@ -77,6 +79,6 @@ void	test_string(void)
 		printf(" Numbers printed:\n");
 		printf("Official function printed %d chars\n", o_result);
 		printf("My function printed %d chars\n\n", my_result);
-	}*/
+	}
 	printf("String testing completed\n\n");
 }

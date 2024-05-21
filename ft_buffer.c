@@ -6,7 +6,7 @@
 /*   By: zslowian <zslowian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 20:06:20 by zslowian          #+#    #+#             */
-/*   Updated: 2024/05/19 20:00:50 by zslowian         ###   ########.fr       */
+/*   Updated: 2024/05/21 14:25:33 by zslowian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	ft_write_buffer(t_data *data, char c)
  **/
 void	ft_flush_buffer(t_data *data)
 {
-	//print_my_structure("ft_flush_buffer", data);
 	data->nbr_chars += write(STDOUT_FILENO, data->buffer, data->buffer_index);
 	my_memset(data->buffer, 0, BUF_SIZE);
 	data->buffer_index = 0;
