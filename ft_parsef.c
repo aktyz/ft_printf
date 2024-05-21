@@ -111,7 +111,6 @@ static void	ft_get_width_value(t_data *data, int *value)
 		*value = va_arg(data->arg_ptr, int);
 		++data->str;
 	}
-	// TODO: check the behaviour of the original function in this case
 	else if (!ft_in(NUMBERS, *data->str))
 		*value = 0;
 	else

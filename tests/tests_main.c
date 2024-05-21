@@ -17,12 +17,11 @@
 void	test_char(void);
 void	test_percent(void);
 void	test_string(void);
+void	test_single_integer(void);
 
 int	main(void)
 {
-	test_char();
-	test_percent();
-	test_string();
+	test_single_integer();
 	return (0);
 }
 
@@ -81,4 +80,108 @@ void	test_string(void)
 		printf("My function printed %d chars\n\n", my_result);
 	}
 	printf("String testing completed\n\n");
+}
+
+/**
+ * Tests to have a look at the run of ft_printf when passing an integer
+ * as one of the variadic arguments. Tested with all flags that are elligible
+ * to be added on an integer format string
+ *
+*/
+void	test_single_integer(void)
+{
+	int		o_result;
+	int		my_result;
+	int	my_integer;
+
+	my_integer = 77;
+	o_result = printf("%d\n", my_integer);
+	my_result = ft_printf("%d\n", my_integer);
+	printf("\n");
+	if (o_result != my_result)
+	{
+		printf("First integer test case failed!!! Numbers printed:\n");
+		printf("Official function printed %d chars\n", o_result);
+		printf("My function printed %d chars\n\n", my_result);
+	}
+	// Test with padding
+    my_integer = 77;
+    o_result = printf("%5d\n", my_integer);
+    my_result = ft_printf("%5d\n", my_integer);
+	printf("\n");
+    if (o_result != my_result)
+    {
+        printf("Padding integer test case failed!!! Numbers printed:\n");
+        printf("Official function printed %d chars\n", o_result);
+        printf("My function printed %d chars\n\n", my_result);
+    }
+
+    // Test with left-justified padding
+    my_integer = 77;
+    o_result = printf("%-5d\n", my_integer);
+    my_result = ft_printf("%-5d\n", my_integer);
+	printf("\n");
+    if (o_result != my_result)
+    {
+        printf("Left-justified padding integer test case failed!!! Numbers printed:\n");
+        printf("Official function printed %d chars\n", o_result);
+        printf("My function printed %d chars\n\n", my_result);
+    }
+
+    // Test with zero padding
+    my_integer = 77;
+    o_result = printf("%05d\n", my_integer);
+    my_result = ft_printf("%05d\n", my_integer);
+	printf("\n");
+    if (o_result != my_result)
+    {
+        printf("Zero padding integer test case failed!!! Numbers printed:\n");
+        printf("Official function printed %d chars\n", o_result);
+        printf("My function printed %d chars\n\n", my_result);
+    }
+
+    // Test with precision
+    my_integer = 77;
+    o_result = printf("%.5d\n", my_integer);
+    my_result = ft_printf("%.5d\n", my_integer);
+	printf("\n");
+    if (o_result != my_result)
+    {
+        printf("Precision integer test case failed!!! Numbers printed:\n");
+        printf("Official function printed %d chars\n", o_result);
+        printf("My function printed %d chars\n\n", my_result);
+    }
+
+    // Test with positive sign
+    my_integer = 77;
+    o_result = printf("%+d\n", my_integer);
+    my_result = ft_printf("%+d\n", my_integer);
+	printf("\n");
+    if (o_result != my_result)
+    {
+        printf("Positive sign integer test case failed!!! Numbers printed:\n");
+        printf("Official function printed %d chars\n", o_result);
+        printf("My function printed %d chars\n\n", my_result);
+    }
+	// Test with empty precision
+	o_result = printf("%+.d\n", my_integer);
+	my_result = ft_printf("%+.d\n", my_integer);
+	printf("\n");
+	if (o_result != my_result)
+	{
+		printf("Empty precision integer test case failed!!! Numbers printed:\n");
+		printf("Official function printed %d chars\n", o_result);
+		printf("My function printed %d chars\n\n", my_result);
+	}
+	// Test with precision given as va_arg
+	o_result = printf("%.*d\n", 3, my_integer);
+	my_result = ft_printf("%.*d\n", 3, my_integer);
+	printf("\n");
+	if (o_result != my_result)
+	{
+		printf("Precision given as va_arg integer test case failed!!! Numbers printed:\n");
+		printf("Official function printed %d chars\n", o_result);
+		printf("My function printed %d chars\n\n", my_result);
+	}
+	printf("\n");
 }
