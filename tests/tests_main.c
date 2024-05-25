@@ -17,11 +17,12 @@
 void	test_char(void);
 void	test_percent(void);
 void	test_string(void);
+void	testPointer(void);
 void	test_single_integer(void);
 
 int	main(void)
 {
-	test_single_integer();
+	testPointer();
 	return (0);
 }
 
@@ -180,6 +181,23 @@ void	test_single_integer(void)
 	if (o_result != my_result)
 	{
 		printf("Precision given as va_arg integer test case failed!!! Numbers printed:\n");
+		printf("Official function printed %d chars\n", o_result);
+		printf("My function printed %d chars\n\n", my_result);
+	}
+	printf("\n");
+}
+
+void	testPointer(void)
+{
+	int	o_result;
+	int	my_result;
+
+	o_result = printf(" %p %p \n", (void *)0, (void *)0);
+	my_result = ft_printf(" %p %p \n", (void *)0, (void *)0);
+	printf("\n");
+	if (o_result != my_result)
+	{
+		printf("Null Pointer given as va_arg integer test case failed!!! Numbers printed:\n");
 		printf("Official function printed %d chars\n", o_result);
 		printf("My function printed %d chars\n\n", my_result);
 	}

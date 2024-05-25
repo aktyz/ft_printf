@@ -16,16 +16,16 @@ static void	ft_set_padding_zeros(t_data *data);
 static void	ft_set_padding_spaces(t_data *data);
 static void	ft_sign(t_data *data);
 static void ft_put0x(t_data *data);
-void		ft_render_number(t_data *data, t_value int_value);
+void		ft_render_number(t_data *data);
 
 /**
  * Wrapper around ft_putnumber_buffer function
  * to handle the left adjustment and all the flags
  *
  */
-void	ft_render_number(t_data *data, t_value int_value)
+void	ft_render_number(t_data *data)
 {
-	ft_itoa_buffer(data, int_value);
+	ft_itoa_buffer(data, data->value_to_print);
 	ft_set_padding_zeros(data);
 	ft_set_padding_spaces(data);
 	if (data->format.minus)
@@ -121,7 +121,7 @@ static void	ft_set_padding_spaces(t_data *data)
  */
 static void	ft_sign(t_data *data)
 {
-	if (data->format.base == BASE_16)
+	if (data->format.base == BASE_16 && data->value_to_print.l_value != 0)
 		ft_put0x(data);
 	else if (data->format.plus)
 	{

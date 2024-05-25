@@ -117,6 +117,8 @@ typedef struct s_data
 	int			buffer_index;
 	// Temporary buffer for handling number printing
 	char		temp[64];
+	// Value to print in the on chosen fd
+	t_value		value_to_print;
 }	t_data;
 
 /**
@@ -148,7 +150,7 @@ void	ft_putchar_buffer(char c, int precision, t_data *data);
 void	ft_putstring_buffer(char *str, int precision, t_data *data);
 void	ft_render_char(t_data *data, int c);
 void	ft_render_string(t_data *data, char *str);
-void	ft_render_number(t_data *data, t_value int_value);
+void	ft_render_number(t_data *data);
 void	ft_itoa_buffer(t_data *data, t_value int_value);
 
 void	print_my_structure(char *ft_name, t_data *data);
