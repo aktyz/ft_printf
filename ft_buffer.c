@@ -6,7 +6,7 @@
 /*   By: zslowian <zslowian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 20:06:20 by zslowian          #+#    #+#             */
-/*   Updated: 2024/05/26 09:55:36 by zslowian         ###   ########.fr       */
+/*   Updated: 2024/05/26 10:28:04 by zslowian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	ft_itoa_buffer(t_data *data, t_value int_value)
 	if (data->format.is_number_negative && !data->format.is_number_negated)
 	{
 		int_value.l_value = -(int_value.l_value);
+		ft_putchar_buffer('-', 1, data);
 		data->format.is_number_negated = true;
 		ft_itoa_buffer(data, int_value);
 	}

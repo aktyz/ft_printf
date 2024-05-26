@@ -18,11 +18,12 @@ void	test_char(void);
 void	test_percent(void);
 void	test_string(void);
 void	testPointer(void);
+void	test_minus(void);
 void	test_single_integer(void);
 
 int	main(void)
 {
-	testPointer();
+	test_minus();
 	return (0);
 }
 
@@ -232,6 +233,21 @@ void	testPointer(void)
 		printf("My function printed %d chars\n\n", my_result);
 	}
 	printf("\n");
+}
 
+void	test_minus(void)
+{
+	int	o_result;
+	int	my_result;
 
+	o_result = printf(" %d \n", -1);
+	my_result = ft_printf(" %d \n", -1);
+	printf("\n");
+	if (o_result != my_result)
+	{
+		printf("Test minus given as va_arg integer test case failed!!! Numbers printed:\n");
+		printf("Official function printed %d chars\n", o_result);
+		printf("My function printed %d chars\n\n", my_result);
+	}
+	printf("\n");
 }
