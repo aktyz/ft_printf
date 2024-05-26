@@ -202,4 +202,36 @@ void	testPointer(void)
 		printf("My function printed %d chars\n\n", my_result);
 	}
 	printf("\n");
+	o_result = printf(" %p \n", (void *)16);
+	my_result = ft_printf(" %p \n", (void *)16);
+	printf("\n");
+	if (o_result != my_result)
+	{
+		printf("Pointer = 16 given as va_arg integer test case failed!!! Numbers printed:\n");
+		printf("Official function printed %d chars\n", o_result);
+		printf("My function printed %d chars\n\n", my_result);
+	}
+	printf("\n");
+	o_result = printf(" %p %p \n", (void *)LONG_MIN, (void *)LONG_MAX);
+	my_result = ft_printf(" %p %p \n", (void *)LONG_MIN, (void *)LONG_MAX);
+	printf("\n");
+	if (o_result != my_result)
+	{
+		printf("Pointer = 16 given as va_arg integer test case failed!!! Numbers printed:\n");
+		printf("Official function printed %d chars\n", o_result);
+		printf("My function printed %d chars\n\n", my_result);
+	}
+	printf("\n");
+	o_result = printf(" %p %p \n", (void *)INT_MIN, (void *)INT_MAX);
+	my_result = ft_printf(" %p %p \n", (void *)INT_MIN, (void *)INT_MAX);
+	printf("\n");
+	if (o_result != my_result)
+	{
+		printf("Pointer = 16 given as va_arg integer test case failed!!! Numbers printed:\n");
+		printf("Official function printed %d chars\n", o_result);
+		printf("My function printed %d chars\n\n", my_result);
+	}
+	printf("\n");
+
+
 }

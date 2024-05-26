@@ -6,7 +6,7 @@
 /*   By: zslowian <zslowian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 20:06:20 by zslowian          #+#    #+#             */
-/*   Updated: 2024/05/25 19:34:03 by zslowian         ###   ########.fr       */
+/*   Updated: 2024/05/26 09:55:36 by zslowian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,6 @@ void	ft_itoa_buffer(t_data *data, t_value int_value)
 
 	if (data->format.base < 2 || data->format.base > 16)
 		return;
-	if (data->format.specifier == 'p' && int_value.l_value == 0)
-	{
-		ft_putstring_buffer("(nil)", 5, data);
-		return ;
-	}
 	if (data->format.is_number_negative && !data->format.is_number_negated)
 	{
 		int_value.l_value = -(int_value.l_value);

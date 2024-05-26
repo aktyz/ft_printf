@@ -92,6 +92,7 @@ typedef struct s_format
 	int		nbr_padding_zeros;
 	bool	is_number_negative;
 	bool	is_number_negated;
+	bool	nil;
 	// lenght of the number string to be printed out
 	int		nbr_length;
 }	t_format;

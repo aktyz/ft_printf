@@ -17,6 +17,7 @@
 
 static int	ft_initialize_data(t_data *data, const char *format);
 void		ft_render_format(t_data *data);
+void		ft_put_nil(t_data *data);
 
 /**
  * Function replicating the behaviour of stdio.h
@@ -91,9 +92,22 @@ void	ft_render_format(t_data *data)
 				data->format.is_number_negative = true;
 		}
 		else if (specifier == 'p')
+		{
 			data->value_to_print.ul_value = (unsigned long) va_arg(data->arg_ptr, void *);
+			ft_put_nil(data);
+		}
 		else if (ft_in("uxX", specifier))
 			data->value_to_print.ul_value = (unsigned long) va_arg(data->arg_ptr, unsigned int);
-		ft_render_number(data);
+		if (!data->format.nil)
+			ft_render_number(data);
+	}
+}
+
+void	ft_put_nil(t_data *data)
+{
+	if (data->format.specifier == 'p' && data->value_to_print.l_value == 0)
+	{
+		ft_putstring_buffer("(nil)", 5, data);
+		data->format.nil = true;
 	}
 }
