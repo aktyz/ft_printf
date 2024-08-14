@@ -12,11 +12,16 @@ OBJS = $(SRCS:.c=.o)
 
 HEADER = ./
 
-.c.o:
+%.o : %.c
 	@$(CC) $(CFLAGS) -I $(HEADER) -c $< -o $@
 
 $(NAME): $(OBJS)
 	@ar cr $(NAME) $(OBJS)
+	@echo "libftprintf.a created"
+
+bonus: $(OBJS)
+	@ar cr $(NAME) $(OBJS)
+	@echo "libftprintf.a bonus created"
 
 all: $(NAME)
 
@@ -31,4 +36,4 @@ tests:
 
 re: fclean all
 
-.PHONY: clean fclean re all
+.PHONY: all clean fclean re tests
