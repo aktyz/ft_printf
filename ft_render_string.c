@@ -6,7 +6,7 @@
 /*   By: zslowian <zslowian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 14:53:41 by zslowian          #+#    #+#             */
-/*   Updated: 2024/05/21 14:24:25 by zslowian         ###   ########.fr       */
+/*   Updated: 2024/08/18 19:46:19 by zslowian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_render_string(t_data *data, char *str)
 		str = "(null)";
 	}
 	ft_set_nbr_padding_spaces(data, str);
+	// The error happens somewhere here -> TODO: find it and repair
 	if (data->format.minus)
 	{
 		if (data->format.precision)

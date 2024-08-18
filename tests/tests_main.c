@@ -20,10 +20,12 @@ void	test_string(void);
 void	testPointer(void);
 void	test_minus(void);
 void	test_single_integer(void);
+void	test_dot_category(void);
 
 int	main(void)
 {
-	test_minus();
+	//test_string();
+	test_dot_category();
 	return (0);
 }
 
@@ -246,6 +248,25 @@ void	test_minus(void)
 	if (o_result != my_result)
 	{
 		printf("Test minus given as va_arg integer test case failed!!! Numbers printed:\n");
+		printf("Official function printed %d chars\n", o_result);
+		printf("My function printed %d chars\n\n", my_result);
+	}
+	printf("\n");
+}
+
+void	test_dot_category(void)
+{
+	int	o_result;
+	int	my_result;
+
+	printf("Testing dot category\n");
+	o_result = printf(" %.s ", "-");
+	printf("\n");
+	my_result = ft_printf(" %.s ", "-");
+	printf("\n");
+	if (o_result != my_result)
+	{
+		printf("Test test case failed!!! Numbers printed:\n");
 		printf("Official function printed %d chars\n", o_result);
 		printf("My function printed %d chars\n\n", my_result);
 	}
