@@ -87,6 +87,7 @@ static void	ft_parse_flags(t_data *data)
  */
 static void	ft_get_precision_value(t_data *data, int *value)
 {
+	data->format.is_precision = true;
 	if (*data->str == '*')
 	{
 		*value = va_arg(data->arg_ptr, int);

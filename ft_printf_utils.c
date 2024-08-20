@@ -85,6 +85,7 @@ void	print_my_structure(char *ft_name, t_data *data)
 	printf("\tSpecifier value: %c\n", data->format.specifier);
 	printf("\tBase flag: %c\n", data->format.base);
 	printf("\tUpperCase flag: %d\n", data->format.upper_case);
+	printf("\tIs_Precision flag: %d\n", data->format.is_precision);
 	print_width_precision(ft_name, data);
 	printf("\n\n");
 }
@@ -99,4 +100,5 @@ void	print_width_precision(char *ft_name, t_data *data)
 	printf("\tWidth value: %d\n", data->format.width);
 	printf("\tPrecision value: %d\n", data->format.precision);
 	printf("\tNbr padding spaces value: %d\n", data->format.nbr_padding_spaces);
+	printf("\n\n");
 }

@@ -81,6 +81,10 @@ typedef struct s_format
 	 * The value should be zero padded
 	*/
 	bool	zero_pad;
+	/**
+	 * Precision flag to know if we should look at the precision value or not
+	*/
+	bool	is_precision;
 	// cspdiuxX% format specifiers
 	char	specifier;
 	t_base	base;

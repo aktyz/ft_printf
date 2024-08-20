@@ -24,8 +24,6 @@ void	test_dot_category(void);
 
 int	main(void)
 {
-	//test_string();
-	test_dot_category();
 	return (0);
 }
 
@@ -259,7 +257,7 @@ void	test_dot_category(void)
 	int	o_result;
 	int	my_result;
 
-	printf("Testing dot category\n");
+	printf("Testing dot(precision) category\n");
 	o_result = printf(" %.s ", "-");
 	printf("\n");
 	my_result = ft_printf(" %.s ", "-");
