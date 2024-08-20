@@ -21,9 +21,11 @@ void	testPointer(void);
 void	test_minus(void);
 void	test_single_integer(void);
 void	test_dot_category(void);
+void	test_minus_category(void);
 
 int	main(void)
 {
+	test_minus_category();
 	return (0);
 }
 
@@ -269,4 +271,67 @@ void	test_dot_category(void)
 		printf("My function printed %d chars\n\n", my_result);
 	}
 	printf("\n");
+}
+
+void	test_minus_category(void)
+{
+	int	o_result;
+	int	my_result;
+
+	printf("Testing minus(left justification) category\n");
+	//sleep(1);
+	o_result = printf(" %-2s", "");
+	printf("\n");
+	my_result = ft_printf(" %-2s", "");
+	printf("\n");
+	if (o_result != my_result)
+	{
+		printf("Test 12 test case failed!!! Numbers printed:\n");
+		printf("Official function printed %d chars\n", o_result);
+		printf("My function printed %d chars\n\n", my_result);
+	}
+	printf("\n");
+	o_result = printf("%-3s", "");
+	printf("\n");
+	my_result = ft_printf("%-3s", "");
+	printf("\n");
+	if (o_result != my_result)
+	{
+		printf("Test 13 test case failed!!! Numbers printed:\n");
+		printf("Official function printed %d chars\n", o_result);
+		printf("My function printed %d chars\n\n", my_result);
+	}
+	printf("\n");
+	o_result = printf(" %-3s %-4s ", " - ", "");
+	printf("\n");
+	my_result = ft_printf(" %-3s %-4s ", " - ", "");
+	printf("\n");
+	if (o_result != my_result)
+	{
+		printf("Test 17 test case failed!!! Numbers printed:\n");
+		printf("Official function printed %d chars\n", o_result);
+		printf("My function printed %d chars\n\n", my_result);
+	}
+	printf("\n");
+	o_result = printf(" %-2s %-3s %-4s %-5s ", " - ", "", "4", "");
+	printf("\n");
+	my_result = ft_printf(" %-2s %-3s %-4s %-5s ", " - ", "", "4", "");
+	printf("\n");
+	if (o_result != my_result)
+	{
+		printf("Test 18 test case failed!!! Numbers printed:\n");
+		printf("Official function printed %d chars\n", o_result);
+		printf("My function printed %d chars\n\n", my_result);
+	}
+	printf("\n");
+	o_result = printf(" %-3s %-3s %-4s %-5s %-3s ", " - ", "", "4", "", "2 ");
+	printf("\n");
+	my_result = ft_printf(" %-3s %-3s %-4s %-5s %-3s ", " - ", "", "4", "", "2 ");
+	printf("\n");
+	if (o_result != my_result)
+	{
+		printf("Test 19 test case failed!!! Numbers printed:\n");
+		printf("Official function printed %d chars\n", o_result);
+		printf("My function printed %d chars\n\n", my_result);
+	}
 }

@@ -30,11 +30,7 @@ int	ft_parsef(t_data *data)
 	ft_parse_flags(data);
 	ft_get_width_value(data, &data->format.width);
 	if (*data->str == '.' && *(++data->str))
-	{
-		//printf("\nHow many times do we enter here??\n");
-		//We are here once
 		ft_get_precision_value(data, &data->format.precision);
-	}
 	if (!ft_in(SPECIFIERS, *data->str))
 		return (PARSE_ERROR);
 	else

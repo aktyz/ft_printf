@@ -75,7 +75,7 @@ void	print_my_structure(char *ft_name, t_data *data)
 	printf("Format string: %s\n", data->str);
 	printf("Number of chars to return: %d\n", data->nbr_chars);
 	printf("My buffer index: %d\n", data->buffer_index);
-	printf("Content of buffer: %s\n\n", data->buffer);
+	printf("Content of buffer: \"%s\"\n\n", data->buffer);
 	printf("Data->format content:\n");
 	printf("\tMinus flag: %d\n", data->format.minus);
 	printf("\tPlus flag: %d\n", data->format.plus);

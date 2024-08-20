@@ -82,10 +82,7 @@ void	ft_render_format(t_data *data)
 	else if (specifier == 'c')
 		ft_render_char(data, va_arg(data->arg_ptr, int));
 	else if (specifier == 's')
-	//else if (specifier == 's' && !(data->format.precision && data->format.precision <=0)) //TRY this one out, the other similar didn't work
 	{
-		//printf("\nHow many times do we enter here??\n");
-		//We are here once
 		ft_render_string(data, va_arg(data->arg_ptr, char *));
 	}
 	if (ft_in("pdiuxX", specifier))
