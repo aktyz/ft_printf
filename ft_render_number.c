@@ -27,7 +27,8 @@ void	ft_render_number(t_data *data)
 {
 	ft_itoa_buffer(data, data->value_to_print);
 	ft_set_padding_zeros(data);
-	ft_set_padding_spaces(data);
+	if (data->format.space || data->format.width)
+		ft_set_padding_spaces(data);
 	if (data->format.minus)
 	{
 		ft_sign(data);
@@ -90,8 +91,11 @@ static void	ft_set_padding_spaces(t_data *data)
 {
 	char	specifier = data->format.specifier;
 
-	data->format.nbr_padding_spaces = data->format.width - \
-		data->format.nbr_padding_zeros - data->format.nbr_length;
+	if (data->format.width)
+		data->format.nbr_padding_spaces = data->format.width - \
+			data->format.nbr_padding_zeros - data->format.nbr_length;
+	else if (!data->format.is_number_negative)
+		data->format.nbr_padding_spaces++;
 	if (ft_in("uxXp", specifier))
 	{
 		if (((ft_in("xX", specifier) && data->format.hash && \
@@ -105,11 +109,6 @@ static void	ft_set_padding_spaces(t_data *data)
 		return ;
 	}
 	if (!data->format.is_number_negative && data->format.plus)
-	{
-		data->format.nbr_padding_spaces--;
-		return ;
-	}
-	if (!data->format.is_number_negative && data->format.space)
 	{
 		data->format.nbr_padding_spaces--;
 		return ;

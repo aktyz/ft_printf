@@ -90,11 +90,7 @@ static void	ft_get_precision_value(t_data *data, int *value)
 		++data->str;
 	}
 	else if (!ft_in(NUMBERS, *data->str))
-	{
-		//printf("\nHow many times do we enter here??\n");
-		//We are here once
 		*value = 0;
-	}
 	else
 		*value = my_atoi(data);
 	if (ft_in("diuxX", data->format.specifier))
