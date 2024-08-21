@@ -23,10 +23,11 @@ void	test_single_integer(void);
 void	test_dot_category(void);
 void	test_minus_category(void);
 void	test_space_category(void);
+void	test_plus_category(void);
 
 int	main(void)
 {
-	test_space_category();
+	test_plus_category();
 	return (0);
 }
 
@@ -341,7 +342,7 @@ void	test_space_category(void)
 	int	o_result;
 	int	my_result;
 
-	printf("Testing space(additional space or \"-\" sign) category\n");
+	printf("Testing space (additional space or \"-\" sign) category\n");
 	o_result = printf(" % d ", 0);
 	printf("\n");
 	my_result = ft_printf(" % d ", 0);
@@ -349,6 +350,36 @@ void	test_space_category(void)
 	if (o_result != my_result)
 	{
 		printf("Test 12 test case failed!!! Numbers printed:\n");
+		printf("Official function printed %d chars\n", o_result);
+		printf("My function printed %d chars\n\n", my_result);
+	}
+	printf("\n");
+}
+
+void	test_plus_category(void)
+{
+	int	o_result;
+	int	my_result;
+
+	printf("Testing plus (plus or minus sign before every number) category\n");
+	o_result = printf(" %+d ", 0);
+	printf("\n");
+	my_result = ft_printf(" %+d ", 0);
+	printf("\n");
+	if (o_result != my_result)
+	{
+		printf("Test 1 test case failed!!! Numbers printed:\n");
+		printf("Official function printed %d chars\n", o_result);
+		printf("My function printed %d chars\n\n", my_result);
+	}
+	printf("\n");
+	o_result = printf(" %+d ", -1);
+	printf("\n");
+	my_result = ft_printf(" %+d ", -1);
+	printf("\n");
+	if (o_result != my_result)
+	{
+		printf("Test 2 test case failed!!! Numbers printed:\n");
 		printf("Official function printed %d chars\n", o_result);
 		printf("My function printed %d chars\n\n", my_result);
 	}

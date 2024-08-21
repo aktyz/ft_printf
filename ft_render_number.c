@@ -124,9 +124,9 @@ static void	ft_sign(t_data *data)
 		ft_put0x(data);
 	else if (data->format.plus)
 	{
-		if (data->format.is_number_negative)
-			ft_putchar_buffer('-', 1, data);
-		else if (data->temp[0] != '0')
+		if (data->temp[0] != '0' && !data->format.is_number_negative)
+			ft_putchar_buffer('+', 1, data);
+		else if (data->value_to_print.l_value == 0)
 			ft_putchar_buffer('+', 1, data);
 		else if (!data->format.plus && data->format.space)
 			ft_putchar_buffer(' ', 1, data);
