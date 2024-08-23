@@ -6,7 +6,7 @@
 /*   By: zslowian <zslowian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 14:53:41 by zslowian          #+#    #+#             */
-/*   Updated: 2024/08/20 19:29:06 by zslowian         ###   ########.fr       */
+/*   Updated: 2024/08/23 18:43:25 by zslowian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ void	ft_render_string(t_data *data, char *str)
 			ft_putstring_buffer(str, data->format.precision, data);
 		else
 			ft_putstring_buffer(str, ft_strlen(str), data);
-		while(data->format.nbr_padding_spaces--)
+		while (data->format.nbr_padding_spaces--)
 			ft_putstring_buffer(PADDING_SPACE, 1, data);
 	}
 	else
 	{
-		while(data->format.nbr_padding_spaces--)
+		while (data->format.nbr_padding_spaces--)
 			ft_putstring_buffer(PADDING_SPACE, 1, data);
 		if (data->format.is_precision)
 			ft_putstring_buffer(str, data->format.precision, data);

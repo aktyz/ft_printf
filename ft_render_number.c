@@ -15,7 +15,7 @@
 static void	ft_set_padding_zeros(t_data *data);
 static void	ft_set_padding_spaces(t_data *data);
 static void	ft_sign(t_data *data);
-static void ft_put0x(t_data *data);
+static void	ft_put0x(t_data *data);
 void		ft_render_number(t_data *data);
 
 /**
@@ -89,8 +89,9 @@ static void	ft_set_padding_zeros(t_data *data)
  */
 static void	ft_set_padding_spaces(t_data *data)
 {
-	char	specifier = data->format.specifier;
+	char	specifier;
 
+	specifier = data->format.specifier;
 	if (data->format.width)
 		data->format.nbr_padding_spaces = data->format.width - \
 			data->format.nbr_padding_zeros - data->format.nbr_length;
@@ -114,6 +115,7 @@ static void	ft_set_padding_spaces(t_data *data)
 		return ;
 	}
 }
+
 /**
  * Function to handle special signs that can occur in front
  * of a number: "+-0x..."
@@ -137,7 +139,7 @@ static void	ft_sign(t_data *data)
  * Function to proceed the memory addres with appropriate
  * symbols: "0X" or "0x"
  */
-static void ft_put0x(t_data *data)
+static void	ft_put0x(t_data *data)
 {
 	if (((ft_in("xX", data->format.specifier) && data->format.hash && \
 				data->temp[0] != '0')) || data->format.specifier == 'p')

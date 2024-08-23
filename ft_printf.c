@@ -95,11 +95,13 @@ void	ft_render_format(t_data *data)
 		}
 		else if (specifier == 'p')
 		{
-			data->value_to_print.ul_value = (unsigned long) va_arg(data->arg_ptr, void *);
+			data->value_to_print.ul_value = (unsigned long)
+				va_arg(data->arg_ptr, void *);
 			ft_put_nil(data);
 		}
 		else if (ft_in("uxX", specifier))
-			data->value_to_print.ul_value = (unsigned long) va_arg(data->arg_ptr, unsigned int);
+			data->value_to_print.ul_value = (unsigned long)
+				va_arg(data->arg_ptr, unsigned int);
 		if (!data->format.nil)
 			ft_render_number(data);
 	}

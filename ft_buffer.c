@@ -6,7 +6,7 @@
 /*   By: zslowian <zslowian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 20:06:20 by zslowian          #+#    #+#             */
-/*   Updated: 2024/08/20 19:27:51 by zslowian         ###   ########.fr       */
+/*   Updated: 2024/08/23 18:48:51 by zslowian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	ft_itoa_buffer(t_data *data, t_value int_value)
 	t_value	local_temp;
 
 	if (data->format.base < 2 || data->format.base > 16)
-		return;
+		return ;
 	if (data->format.is_number_negative && !data->format.is_number_negated)
 	{
 		int_value.l_value = -(int_value.l_value);
@@ -92,9 +92,11 @@ void	ft_itoa_buffer(t_data *data, t_value int_value)
 	else if (int_value.ul_value < data->format.base)
 	{
 		if (data->format.upper_case)
-			data->temp[data->format.nbr_length++] = UP_SYMBOLS[int_value.ul_value];
+			data->temp[data->format.nbr_length++] = \
+				UP_SYMBOLS[int_value.ul_value];
 		else
-			data->temp[data->format.nbr_length++] = LOW_SYMBOLS[int_value.ul_value];
+			data->temp[data->format.nbr_length++] = \
+				LOW_SYMBOLS[int_value.ul_value];
 	}
 	else
 	{

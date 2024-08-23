@@ -63,6 +63,7 @@ int	ft_strlen(const char *str)
 		return (0);
 	return (ft_strlen(str + 1) + 1);
 }
+
 /**
  * Debugging helper function to print everything stored
  * in my custom structure
@@ -88,9 +89,11 @@ void	print_my_structure(char *ft_name, t_data *data)
 	printf("\tIs_Precision flag: %d\n", data->format.is_precision);
 	printf("\tIs_Number_negative flag: %d\n", data->format.is_number_negative);
 	print_width_precision(ft_name, data);
-	printf("Number to print in case of number specifier: %lu\n", data->value_to_print.ul_value);
+	printf("Number to print in case of number specifier: %lu\n",
+		data->value_to_print.ul_value);
 	printf("\n\n");
 }
+
 /**
  * Debugging helper function to print three variables concerning
  * padding
@@ -102,7 +105,8 @@ void	print_width_precision(char *ft_name, t_data *data)
 	printf("\tWidth value: %d\n", data->format.width);
 	printf("\tPrecision value: %d\n", data->format.precision);
 	printf("\tNbr padding spaces value: %d\n", data->format.nbr_padding_spaces);
-	printf("\tNumber of padding zeroes value: %d\n", data->format.nbr_padding_zeros);
+	printf("\tNumber of padding zeroes value: %d\n",
+		data->format.nbr_padding_zeros);
 	printf("\tNumber of number length value: %d\n", data->format.nbr_length);
 	printf("\n\n");
 }
