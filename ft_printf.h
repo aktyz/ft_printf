@@ -149,6 +149,7 @@ int		ft_strlen(const char *str);
 int		ft_parsef(t_data *data);
 int		ft_printf(const char *str, ...);
 void	my_memset(void *ptr, t_byte value, size_t n);
+void	ft_set_padding_zeros(t_data *data);
 void	ft_write_buffer(t_data *data, char c);
 void	ft_flush_buffer(t_data *data);
 void	ft_putchar_buffer(char c, int precision, t_data *data);

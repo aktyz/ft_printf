@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void	ft_set_padding_zeros(t_data *data);
+static void	ft_set_padding_zeros_wrapper(t_data *data);
 static void	ft_set_padding_spaces(t_data *data);
 static void	ft_sign(t_data *data);
 static void	ft_put0x(t_data *data);
@@ -26,7 +26,7 @@ void		ft_render_number(t_data *data);
 void	ft_render_number(t_data *data)
 {
 	ft_itoa_buffer(data, data->value_to_print);
-	ft_set_padding_zeros(data);
+	ft_set_padding_zeros_wrapper(data);
 	if (data->format.space || data->format.width)
 		ft_set_padding_spaces(data);
 	if (data->format.minus)
@@ -49,36 +49,19 @@ void	ft_render_number(t_data *data)
  * Function to set the number of zeros to pad the eventual
  * number to be printed
  */
-static void	ft_set_padding_zeros(t_data *data)
+static void	ft_set_padding_zeros_wrapper(t_data *data)
 {
-	int		precision = data->format.precision;
-	int		nbr_length = data->format.nbr_length;
-	char	specifier = data->format.specifier;
-
-	if (precision > 0)
+	if (data->format.precision > 0)
 	{
-		if (precision > nbr_length)
+		if (data->format.precision > data->format.nbr_length)
 		{
-			data->format.nbr_padding_zeros = precision - nbr_length;
+			data->format.nbr_padding_zeros = data->format.precision - \
+				data->format.nbr_length;
 			return ;
 		}
 	}
 	if (data->format.zero_pad)
-	{
-		if (data->format.minus)
-			return ;
-		if (data->format.width > nbr_length)
-			data->format.nbr_padding_zeros = data->format.width - nbr_length;
-		if (specifier == 'u')
-			return ;
-		else if (((ft_in("xX", specifier) && data->format.hash && \
-				data->temp[0] != '0')) || specifier == 'p')
-			data->format.nbr_padding_zeros -= 2;
-		else if (data->format.is_number_negative || \
-				(!data->format.is_number_negative && data->format.plus) \
-				|| data->format.space)
-			data->format.nbr_padding_zeros--;
-	}
+		ft_set_padding_zeros(data);
 	if (data->format.nbr_padding_zeros < 0)
 		data->format.nbr_padding_zeros = 0;
 }

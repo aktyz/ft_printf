@@ -4,9 +4,9 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = ft_buffer.c ft_parsef.c ft_printf_utils.c \
-		ft_printf.c ft_render_char.c ft_render_number.c \
-		ft_render_string.c
+SRCS = ft_buffer.c ft_parsef.c ft_render_number_utils.c \
+		ft_printf_utils.c ft_printf.c ft_render_char.c \
+		ft_render_number.c ft_render_string.c
 
 OBJS = $(SRCS:.c=.o)
 
