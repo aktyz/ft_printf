@@ -18,6 +18,7 @@
 static int	ft_initialize_data(t_data *data, const char *format);
 void		ft_render_format(t_data *data);
 void		ft_put_nil(t_data *data);
+static void	ft_split_on_numeric_specifier(t_data *data, char specifier);
 
 /**
  * Function replicating the behaviour of stdio.h
@@ -82,29 +83,30 @@ void	ft_render_format(t_data *data)
 	else if (specifier == 'c')
 		ft_render_char(data, va_arg(data->arg_ptr, int));
 	else if (specifier == 's')
-	{
 		ft_render_string(data, va_arg(data->arg_ptr, char *));
-	}
 	if (ft_in("pdiuxX", specifier))
+		ft_split_on_numeric_specifier(data, specifier);
+}
+
+static void	ft_split_on_numeric_specifier(t_data *data, char specifier)
+{
+	if (ft_in("di", specifier))
 	{
-		if (ft_in("di", specifier))
-		{
-			data->value_to_print.l_value = (long) va_arg(data->arg_ptr, int);
-			if (data->value_to_print.l_value < 0)
-				data->format.is_number_negative = true;
-		}
-		else if (specifier == 'p')
-		{
-			data->value_to_print.ul_value = (unsigned long)
-				va_arg(data->arg_ptr, void *);
-			ft_put_nil(data);
-		}
-		else if (ft_in("uxX", specifier))
-			data->value_to_print.ul_value = (unsigned long)
-				va_arg(data->arg_ptr, unsigned int);
-		if (!data->format.nil)
-			ft_render_number(data);
+		data->value_to_print.l_value = (long) va_arg(data->arg_ptr, int);
+		if (data->value_to_print.l_value < 0)
+			data->format.is_number_negative = true;
 	}
+	else if (specifier == 'p')
+	{
+		data->value_to_print.ul_value = (unsigned long)
+			va_arg(data->arg_ptr, void *);
+		ft_put_nil(data);
+	}
+	else if (ft_in("uxX", specifier))
+		data->value_to_print.ul_value = (unsigned long)
+			va_arg(data->arg_ptr, unsigned int);
+	if (!data->format.nil)
+		ft_render_number(data);
 }
 
 void	ft_put_nil(t_data *data)
